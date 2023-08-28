@@ -16,7 +16,7 @@ function divide(fisrtNumber, secondNumber){
 let fisrtNumber = 0;
 let secondNumber = 0;
 //create a varible to store operator
-let operator = '+'
+let operator = '+';
 
 //create a function that take an operator and two numbers, return the result
 function operate(fisrtNumber, secondNumber, operator){
@@ -33,3 +33,20 @@ function operate(fisrtNumber, secondNumber, operator){
             break;
     }
 }
+
+//POPULATE THE DISPLAY
+let displayArea = document.querySelector(".output");
+//variable to store the display value
+let numberDisplay = "";
+//create an array of digit button reference
+let digits = Array.from(document.querySelectorAll(".numpad button"));
+//create function that populate the display when number buttons are clicked
+for (let i = 0; i < digits.length; i++){
+    digits[i].addEventListener('click', () => {
+        let digit = digits[i].textContent;
+        numberDisplay += digit;
+        displayArea.textContent = +numberDisplay;
+    })
+}
+
+
