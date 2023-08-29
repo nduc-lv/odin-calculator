@@ -9,6 +9,9 @@ function multiply(firstNumber, secondNumber){
     return firstNumber * secondNumber;
 }
 function divide(firstNumber, secondNumber){
+    if (secondNumber == 0){
+        return "Error";
+    }
     return firstNumber / secondNumber;
 }
 
@@ -63,6 +66,7 @@ for (let i = 0; i < operators.length; i++){
             secondNumber = +displayArea.textContent;
             //calculate the privous operations and display the result
             firstNumber = operate(firstNumber, secondNumber, operator);
+            firstNumber = parseFloat(firstNumber.toFixed(4));
             displayArea.textContent = firstNumber;
             //update operator
             operator = operators[i].textContent;
@@ -88,6 +92,7 @@ equal.addEventListener("click", () => {
         numberDisplay = "";
         //calculate the result
         firstNumber = operate(firstNumber, secondNumber, operator);
+        firstNumber = parseFloat(firstNumber.toFixed(4));
         //display the result
         displayArea.textContent = firstNumber;
         //clear the previous operation
