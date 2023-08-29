@@ -1,36 +1,36 @@
 //create basic math operators
-function add(fisrtNumber, secondNumber){
-    return fisrtNumber + secondNumber;
+function add(firstNumber, secondNumber){
+    return firstNumber + secondNumber;
 }
-function subtract(fisrtNumber, secondNumber){
-    return fisrtNumber - secondNumber;
+function subtract(firstNumber, secondNumber){
+    return firstNumber - secondNumber;
 }
-function multiply(fisrtNumber, secondNumber){
-    return fisrtNumber * secondNumber;
+function multiply(firstNumber, secondNumber){
+    return firstNumber * secondNumber;
 }
-function divide(fisrtNumber, secondNumber){
-    return fisrtNumber / secondNumber;
+function divide(firstNumber, secondNumber){
+    return firstNumber / secondNumber;
 }
 
 //create variables to store value
-let fisrtNumber = 0;
+let firstNumber = 0;
 let secondNumber = 0;
 //create a varible to store operator
 let operator = '+';
 
 //create a function that take an operator and two numbers, return the result
-function operate(fisrtNumber, secondNumber, operator){
+function operate(firstNumber, secondNumber, operator){
     switch (operator) {
         case '+':
-            return add(fisrtNumber, secondNumber);
+            return add(firstNumber, secondNumber);
         case '-': 
-            return subtract(fisrtNumber, secondNumber);
+            return subtract(firstNumber, secondNumber);
         case '*':
-            return multiply(fisrtNumber, secondNumber);
+            return multiply(firstNumber, secondNumber);
         case '/':
-            return divide(fisrtNumber, secondNumber);
+            return divide(firstNumber, secondNumber);
         default:
-            break;
+            return firstNumber;
     }
 }
 
@@ -49,4 +49,61 @@ for (let i = 0; i < digits.length; i++){
     })
 }
 
+//DO THE OPERATION
+//if there has been an operation
+let operatorExist = 0;
 
+const operators = Array.from(document.querySelectorAll(".operators button"));
+for (let i = 0; i < operators.length; i++){
+    operators[i].addEventListener("click", () => {
+        if (operatorExist){
+            //ready for the new input
+            numberDisplay = "";
+            //store second number
+            secondNumber = +displayArea.textContent;
+            //calculate the privous operations and display the result
+            firstNumber = operate(firstNumber, secondNumber, operator);
+            displayArea.textContent = firstNumber;
+            //update operator
+            operator = operators[i].textContent;
+        }
+        else{
+            operatorExist = 1;
+            //store first number
+            firstNumber = +displayArea.textContent;
+            numberDisplay = "";
+            //update operator
+            operator = operators[i].textContent;
+        }
+    })
+}
+
+//add equal function
+const equal = document.querySelector(".equal");
+equal.addEventListener("click", () => {
+    if (operatorExist){
+        //store second number
+        secondNumber = +displayArea.textContent;
+        //ready for new input
+        numberDisplay = "";
+        //calculate the result
+        firstNumber = operate(firstNumber, secondNumber, operator);
+        //display the result
+        displayArea.textContent = firstNumber;
+        //clear the previous operation
+        operatorExist = 0;
+    }
+    else{
+        firstNumber = +displayArea.textContent;
+        numberDisplay = "";
+    }
+})
+//add clear function
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", () => {
+    firstNumber = 0;
+    secondNumber = 0;
+    operatorExist = 0;
+    numberDisplay = "";
+    displayArea.textContent = 0;
+})
