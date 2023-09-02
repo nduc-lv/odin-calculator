@@ -1,3 +1,7 @@
+:root{
+    --calculator-width: 60vh;
+    --calculator-height: 90vh;
+}
 html{
     font-size: 64px;
     background-color: black;
@@ -6,6 +10,7 @@ button{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 body{
     margin: 0;
@@ -18,8 +23,8 @@ body{
 .calculator{
     display: flex;
     flex-direction: column;
-    height: 90vh;
-    width: 90vh;
+    height: var(--calculator-height);
+    width: var(--calculator-width);
 }
 .output{
     color: white;
